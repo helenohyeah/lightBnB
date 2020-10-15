@@ -90,7 +90,7 @@ const getAllProperties = function(options, limit = 10) {
   let queryString = `
   SELECT properties.*, avg(property_reviews.rating) AS average_rating
   FROM properties
-  JOIN property_reviews ON properties.id = property_id
+  LEFT JOIN property_reviews ON properties.id = property_id
   `;
   
   if (options.owner_id) {
@@ -140,15 +140,7 @@ const getAllProperties = function(options, limit = 10) {
     .then(res => res.rows);
 };
 exports.getAllProperties = getAllProperties;
-`
-SELECT properties.*, avg(property_reviews.rating) AS average_rating
-FROM properties
-JOIN property_reviews ON properties.id = property_id
-WHERE owner_id = 1
-GROUP BY properties.id
 
-ORDER BY cost_per_night;
-`
 /**
  * Add a property to the database
  * @param {{}} property An object containing all of the property details.
