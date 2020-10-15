@@ -26,9 +26,14 @@ module.exports = function(router, database) {
   const login =  function(email, password) {
     return database.getUserWithEmail(email)
     .then(user => {
+      // console.log('user>>', user);
+      // console.log('password>>', password);
+      // console.log('user.password>>', user.password);
       if (bcrypt.compareSync(password, user.password)) {
+        // console.log('here>>');
         return user;
       }
+      // console.log('here2>>');
       return null;
     });
   }

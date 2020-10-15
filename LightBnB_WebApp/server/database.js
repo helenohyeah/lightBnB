@@ -32,8 +32,8 @@ const getUserWithEmail = function(email) {
   SELECT * FROM users
   WHERE email = $1;
   `, [email])
-  // .then(res => console.log(res.rows));
-  .then(res => res.rows.length === 0 ? null : res.rows);
+  // .then(res => console.log(res.rows[0]));
+  .then(res => res.rows.length === 0 ? null : res.rows[0]);
 }
 exports.getUserWithEmail = getUserWithEmail;
 
@@ -48,7 +48,8 @@ const getUserWithId = function(id) {
   SELECT * FROM users
   WHERE id = $1;
   `, [id])
-  .then(res => res.rows.length === 0 ? null : res.rows);
+    // .then(res => console.log(res.rows[0]));
+  .then(res => res.rows.length === 0 ? null : res.rows[0]);
 }
 exports.getUserWithId = getUserWithId;
 
